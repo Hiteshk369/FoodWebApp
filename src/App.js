@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Carousel from './components/Carousel';
 import Header from './components/Header';
+import Homepage from './pages/Homepage';
+
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       
       <main className='w-full mt-24'>
         <Routes>
-          <Route path='/*' element = {<Carousel />} />
+          <Route path='/*' element = {<Homepage/>} />
         </Routes>
       </main>
     </div>

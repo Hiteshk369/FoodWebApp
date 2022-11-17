@@ -50,6 +50,10 @@ module.exports = {
         lightColor : '#686b78',
         headerColor : '#3d4152',
         orangeColor : '#ffa700',
+        carouselColor : '#171a29',
+        badgeColor : '#db7c38',
+        borderColor : '#dcdedc',
+        footerHeader : '#808080'
       },
     },
   },

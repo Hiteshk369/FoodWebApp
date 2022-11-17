@@ -12,11 +12,12 @@ import '../App.css'
 const Header = () => {
   
   return (
-    <header className = "w-screen h-auto fixed z-50 bg-white">
+    <header className = "w-screen h-100 fixed z-50 bg-white">
         <div className = "hidden w-full md:flex h-full p-6 justify-evenly">
             <div className="flex items-center gap-2 mix-blend-multiply ">
                 <img src= { Logo } className = "w-10  object-cover mix-blend-overlay" alt="logo" />
-                <Loctext className="pl-10 text-lightColor">Hyderabad, Telangana, India</Loctext>
+                <Loctext className='pl-10 font-semibold gap-3 cursor-pointer hover:text-orangeColor'>Other</Loctext>
+                <Loctext className="text-lightColor">Hyderabad, Telangana, India</Loctext>
             </div>
               <ul className = "flex gap-10 items-center justify-center">
                   <li className="flex items-center justify-center cursor-pointer hover:text-orangeColor transition duration-300 ease-in-out" >

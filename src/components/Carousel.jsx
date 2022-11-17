@@ -1,75 +1,72 @@
 import React from 'react'
 import styled from 'styled-components';
-import B1 from '../assets/b1.webp';
-import B2 from '../assets/B2.jpg';
-import B3 from '../assets/B3.jpg';
-import B4 from '../assets/B4.webp';
+
 import {HiOutlineArrowNarrowRight,HiOutlineArrowNarrowLeft} from 'react-icons/hi'
-import { motion } from "framer-motion"
+
+import Slider from 'react-slick';
+import BannerCard from './BannerCard';
+import { banners } from '../assets/banner';
+
+
 
 const Carousel = () => {
+
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        nextArrow : <RightArrow to = "next" />,
+        prevArrow : <LeftArrow  to = "prev" />
+      };
+    
+    const slider = React.useRef(null);
+
   return (
     <>
-    <div className='bg-black w-full h-auto text-white p-10 flex'>
-        <motion.div
-            whileHover={{
-                scale: 1.1,
-            }}>
-            <Banner src={B1} alt="img" className='pl-52 cursor-pointer' />
-        </motion.div>
-        <motion.div whileHover={{
-            scale: 1.1,
-            }}>
-            <Banner src={B2} alt="img" className='mx-12 cursor-pointer' />
-        </motion.div>
-        <motion.div whileHover={{
-            scale : 1.1,
-            }}>
-            <Banner src={B3} alt="img" className='mr-12 cursor-pointer'/>
-        </motion.div>
-        <motion.div whileHover={{
-            scale : 1.1,
-            }}>
-            <Banner src={B4} alt="img" className="cursor-pointer" />
-        </motion.div>
-        
-        <div>
-            
-                <RightArrow style={{
-                'top': '250px',
-                'fontSize': '56px',
-                'background':' #fff',
-                'color': 'black',
-                'borderRadius': '50%',
-                'right': '240px',
-                'padding':'14px',
-                'cursor':'pointer'
-            }}/>
-          
-            
-        </div>
-        <div>
-            <LeftArrow style={{
-                'top': '250px',
-                'fontSize': '56px',
-                'background':' #fff',
-                'color': 'black',
-                'borderRadius': '50%',
-                'left': '212px',
-                'padding':'14px',
-                'cursor' : 'pointer'
-            }} />
-        </div>
-    </div>
+    <section>
+        <Slider ref={slider} className='bg-carouselColor mt-1 justify-evenly pb-8 pt-12 pl-60 pr-40 overflow-y-hidden overflow-x-hidden' {...settings}>
+         
+            {
+                banners.map((banner,index) =>{
+                    return (
+                        <React.Fragment key={index}>
+                            <BannerCard banner={banner} />  
 
-    
+                        </React.Fragment>
+                    );
+                })
+            }
+        </Slider>
+        <button onClick={() => slider?.current?.slickPrev()}><LeftArrow style={{
+            'top': '240px',
+            'fontSize': '56px',
+            'background':' #fff',
+            'color': 'black',
+            'borderRadius': '50%',
+            'left': '205px',
+            'padding':'14px',
+            'cursor' : 'pointer'
+        }}/>
+        </button>
+        <button onClick={() => slider?.current?.slickNext()}><RightArrow style={{
+            'top': '240px',
+            'fontSize': '56px',
+            'background':' #fff',
+            'color': 'black',
+            'borderRadius': '50%',
+            'right': '190px',
+            'padding':'14px',
+            'cursor':'pointer'
+        }} />
+        </button>
+         
+    </section>
     </>
   )
 }
 
-const Banner = styled('img')({
-    height : "260px"
-});
 const RightArrow = styled(HiOutlineArrowNarrowRight)`
     position: absolute;
 `
@@ -79,3 +76,4 @@ const LeftArrow = styled(HiOutlineArrowNarrowLeft)`
 
 
 export default Carousel;
+
