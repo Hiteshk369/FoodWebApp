@@ -98,4 +98,7 @@ export const restaurants = [
         time : '15',
         price : '200'
     },
+   
 ] 
+
+export const resLength = restaurants.length

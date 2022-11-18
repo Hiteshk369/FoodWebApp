@@ -53,8 +53,13 @@ module.exports = {
         carouselColor : '#171a29',
         badgeColor : '#db7c38',
         borderColor : '#dcdedc',
-        footerHeader : '#808080'
+        footerHeader : '#808080',
+        instaColor : '#8a3ab9',
+        titleColor : '#feb400',
       },
+      fontFamily:{
+        poppins : 'poppins',
+      }
     },
   },
   plugins: [],

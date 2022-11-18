@@ -1,17 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header';
 import Homepage from './pages/Homepage';
+import Loginpage from './pages/Loginpage';
 
 
 function App() {
   return (
     <div className='w-screen h-auto flex flex-col'>
-      <Header />
-      
-      <main className='w-full mt-24'>
+      <main className='w-full'>
         <Routes>
-          <Route path='/*' element = {<Homepage/>} />
+          <Route path='/*' element = {<Loginpage />} />
+          <Route path='/home' element = {<Homepage />} />
         </Routes>
       </main>
     </div>

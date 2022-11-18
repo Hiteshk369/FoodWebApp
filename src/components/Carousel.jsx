@@ -25,8 +25,8 @@ const Carousel = () => {
 
   return (
     <>
-    <section>
-        <Slider ref={slider} className='bg-carouselColor mt-1 justify-evenly pb-8 pt-12 pl-60 pr-40 overflow-y-hidden overflow-x-hidden' {...settings}>
+    <section className='mt-20'>
+        <Slider ref={slider} className='bg-carouselColor mt-1 justify-evenly pb-8 pt-12 pl-44 pr-40 overflow-y-hidden overflow-x-hidden' {...settings}>
          
             {
                 banners.map((banner,index) =>{
@@ -45,7 +45,7 @@ const Carousel = () => {
             'background':' #fff',
             'color': 'black',
             'borderRadius': '50%',
-            'left': '205px',
+            'left': '140px',
             'padding':'14px',
             'cursor' : 'pointer'
         }}/>
@@ -56,7 +56,7 @@ const Carousel = () => {
             'background':' #fff',
             'color': 'black',
             'borderRadius': '50%',
-            'right': '190px',
+            'right': '150px',
             'padding':'14px',
             'cursor':'pointer'
         }} />
