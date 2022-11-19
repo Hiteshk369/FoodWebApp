@@ -4,14 +4,19 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import store from './store';
+import { Provider } from 'react-redux';
 
+store.subscribe(()=>console.log(store.getState()))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
       <AnimatePresence>
         <React.StrictMode>
+          <Provider store = {store}>
           <App />
+          </Provider>
         </React.StrictMode>
       </AnimatePresence>
   </Router>
