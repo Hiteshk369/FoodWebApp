@@ -12,23 +12,5 @@ ul li div:nth-child(2){
 ul li div:nth-child(2):hover{
     color : #ffa700;
 }
-ul li div:nth-child(3){
-    color : #3d4152;
-}
-ul li div:nth-child(3):hover{
-    color : #ffa700;
-}
-ul li div:nth-child(4){
-    color : #3d4152;
-}
-ul li div:nth-child(4):hover{
-    color : #ffa700;
-}
-ul li div:nth-child(5){
-    color : #3d4152;
-}
-ul li div:nth-child(5):hover{
-    color : #ffa700;
-}
 
 

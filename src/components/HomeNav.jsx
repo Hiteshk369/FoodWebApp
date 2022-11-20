@@ -1,6 +1,6 @@
 import React from 'react'
 import {HiOutlineAdjustmentsVertical} from 'react-icons/hi2'
-import { resLength } from '../assets/Restaurants';
+
 
 
 const HomeNav = () => {
@@ -10,8 +10,8 @@ const HomeNav = () => {
         "borderBottom":"1px #686b78"
     }}>
         <div className='w-full md:flex h-full justify-between ml-44 mr-48 mb-3 '>
-            <div className="text-3xl flex font-semibold items-center justify-center">
-                {resLength} Restaurants Near You!
+            <div className="text-3xl flex items-center justify-center font-medium">
+               <p className='font-poppins'>Order from the dishes below!</p>
             </div>
             <ul className="flex gap-10 items-center justify-center">
                 

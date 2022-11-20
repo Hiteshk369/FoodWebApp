@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuCard from './MenuCard'
-import { restaurants } from '../assets/Restaurants'
+import { restaurants } from '../utils/Restaurants'
 import {motion} from 'framer-motion'
 
 const HomeMenu = () => {

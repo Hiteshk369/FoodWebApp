@@ -5,7 +5,7 @@ import {HiOutlineArrowNarrowRight,HiOutlineArrowNarrowLeft} from 'react-icons/hi
 
 import Slider from 'react-slick';
 import BannerCard from './BannerCard';
-import { banners } from '../assets/banner';
+import { banners } from '../utils/banner';
 
 
 
