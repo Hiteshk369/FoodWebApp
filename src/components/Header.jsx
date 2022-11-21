@@ -26,6 +26,7 @@ const Header = () => {
       type : 'SET_USER',
       user : null,
     });
+    setisMenu('false');
     localStorage.clear();
     navigate('/')
   }
@@ -103,7 +104,7 @@ const Header = () => {
                               <Link to='/create'><p className='text-base font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Create Item <BsPlus size='20px' /></p></Link>
                             )
                           }
-                          <p className='flex items-center justify-center gap-2' onClick={clearStorage}>Logout <BiLogOut size='20px' /></p>
+                          <p className='flex items-center justify-center gap-2 hover:bg-slate-200 rounded-lg p-2 mx-1' onClick={clearStorage}>Logout <BiLogOut size='20px' /></p>
                         </div>
                       )
                     }

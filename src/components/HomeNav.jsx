@@ -16,7 +16,7 @@ const HomeNav = () => {
             <ul className="flex gap-10 items-center justify-center">
                 
                 <li className='font-semibold text-lg flex items-center justify-center mr-2 cursor-pointer hover:text-orangeColor'>
-                    Filters
+                    <p className='font-poppins'>Filters</p>
                     <span className='pl-2'><HiOutlineAdjustmentsVertical size='40' color='#ffa700' style={{
                         'padding':'8px',
                         'borderRadius':'50%',

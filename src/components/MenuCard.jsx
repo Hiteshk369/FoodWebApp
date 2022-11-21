@@ -19,10 +19,7 @@ const MenuCard = ({restaurant}) => {
             <AiFillStar color='#fff' /><p className='text-white font-semibold text-xs'>{restaurant.rating}</p>
         </div>
         <div>
-            <p className='text-lightColor flex text-xs items-center'>{restaurant.time} MINS</p>
-        </div>
-        <div>
-            <p className='text-lightColor flex items-center justify-center text-xs'><HiCurrencyRupee size="20px" />{restaurant.price} FOR TWO</p>
+            <p className='text-lightColor font-poppins flex items-center justify-center text-xs'><HiCurrencyRupee size="20px" />{restaurant.price}</p>
         </div>
     </div>
     </div>
