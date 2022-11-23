@@ -21,6 +21,10 @@ const Header = () => {
 
   const [isMenu, setisMenu] = useState(false);
 
+  const openMenu = () => {
+    isMenu ? setisMenu(false) : setisMenu(true);
+  }
+
   const clearStorage = () => {
     dispatch({
       type : 'SET_USER',
@@ -87,25 +91,27 @@ const Header = () => {
                   </li>
                   <li className="flex items-center py-9 justify-center cursor-pointer w-56 relative gap-1">
                     <motion.img src={user ? user.photoURL : Avatar}
-                     onClick={() => setisMenu(true)}
+                     onClick={openMenu}
                      alt="avatar"
                      className=' w-10 rounded-full'
                      whileTap={{scale : 0.9}} />
                     <motion.p 
                      className='font-arial font-semibold'
-                     onClick={()=>setisMenu(true)}
-                     whileTap = {{scale:0.9}} 
                      >{ user ? user.displayName : 'Login' }</motion.p>
                     {
                       isMenu && (
-                        <div className='flex flex-col absolute top-20 py-2 w-40 z-50 border bg-white rounded-lg gap-2 right-32'>
+                        <motion.div className='flex flex-col absolute top-20 py-2 w-40 z-50 border bg-white rounded-lg gap-2 right-32'
+                        initial = {{opacity : 0}}
+                        animate = {{opacity : 1}}
+                        exit = {{opacity : 0}}
+                        >
                           {
                             user.email === 'parchahiteshkumar123@gmail.com' && (
                               <Link to='/create'><p className='text-base font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Create Item <BsPlus size='20px' /></p></Link>
                             )
                           }
                           <p className='flex items-center justify-center gap-2 hover:bg-slate-200 rounded-lg p-2 mx-1' onClick={clearStorage}>Logout <BiLogOut size='20px' /></p>
-                        </div>
+                        </motion.div>
                       )
                     }
                     

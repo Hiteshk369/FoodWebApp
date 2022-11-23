@@ -6,7 +6,8 @@ import { categories } from '../utils/categories';
 import Loader from './Loader';
 import {storage} from '../firebase.config';
 import {getDownloadURL, ref, uploadBytesResumable , deleteObject} from 'firebase/storage'
-import { saveItem } from '../utils/FirebaseFunctions';
+import { getFoodItems, saveItem } from '../utils/FirebaseFunctions';
+import {useDispatch} from 'react-redux';
 
 const CreateContainer = () => {
 
@@ -19,6 +20,8 @@ const CreateContainer = () => {
   const [fields,setFields] = useState(false);
   const [alertStatus,setAlertStatus] = useState('');
   const [msg,setMsg] = useState('');
+
+  const dispatch = useDispatch();
 
   const uploadImage = (e) => {
       setisLoading(true);
@@ -108,6 +111,7 @@ const CreateContainer = () => {
           setTimeout(()=>{
             setFields(false);
           },4000)
+          fetchItems();                    
         }
       }catch(error) {
         setFields(true);
@@ -120,12 +124,21 @@ const CreateContainer = () => {
       }   
   };
 
+  const fetchItems = async() => {
+    await getFoodItems().then((data)=>{
+      dispatch({
+        type : 'SET_FOOD_ITEMS',
+        foodItems : data
+      });
+    });
+  };
+
   const clearData = () => {
     setTitle('');
     setImageAsset(null);
     setPrice('');
     setvegOrnon('');
-    setCategory('');
+    setCategory('Select Category');
   }
 
   return (

@@ -26,7 +26,7 @@ export const categories = [
     },
     {
         id : 6,
-        title : 'Drink',
-        urlParamName : 'Drink'
+        title : 'Beverage',
+        urlParamName : 'Beverage'
     }
 ]

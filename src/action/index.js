@@ -1,5 +1,6 @@
 export const actionType = () => {
     return {
-        type : 'SET_USER'
+        SET_USER : 'SET_USER',
+        SET_FOOD_ITEMS : 'SET_FOOD_ITEMS',
     }
 }

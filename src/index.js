@@ -12,7 +12,7 @@ store.subscribe(()=>(store.getState()))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         <React.StrictMode>
           <Provider store = {store}>
           <App />

@@ -3,7 +3,8 @@ import { fetchUser } from "../utils/fetchLocalStorageData";
 const userInfo = fetchUser()
 
 export const initialState = {
-    user : userInfo
+    user : userInfo,
+    foodItems : null,
 }
 
 const reducers = (state = initialState, action) => {
@@ -13,6 +14,12 @@ const reducers = (state = initialState, action) => {
                 ...state,
                 user : action.user,
             };
+        
+        case 'SET_FOOD_ITEMS' :
+            return {
+                ...state,
+                foodItems : action.foodItems
+            }
         default :
             return state;
     }
