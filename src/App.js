@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import Homepage from './pages/Homepage';
 import Loginpage from './pages/Loginpage';
 import SaveDish from './pages/SaveDish';
 import { getFoodItems } from './utils/FirebaseFunctions';
-import { useDispatch} from 'react-redux';
-
-
 
 function App() {
 
@@ -24,7 +21,8 @@ function App() {
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  },);
+
   
   return (
     <div className='w-screen h-auto flex flex-col'>

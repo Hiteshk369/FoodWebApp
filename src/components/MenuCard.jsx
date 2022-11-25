@@ -6,9 +6,9 @@ import styled from 'styled-components'
 
 const MenuCard = ({food}) => {
   return (
-    <div className='block relative border p-6 cursor-pointer rounded-3xl border-white hover:border-borderColor h-340 w-370 '>
+    <div className='block relative border p-6 cursor-pointer rounded-xl border-white hover:border-borderColor h-340 w-370 '>
     <div>
-        <ItemImg className="mt-3 rounded-3xl" src={food?.imageUrl} alt="Cake" />
+        <ItemImg className="mt-3 rounded-xl" src={food?.imageUrl} alt="Cake" />
     </div>
     <div className='mt-3'>
         <p className='font-poppins font-semibold text-lg'>{food?.title}</p>

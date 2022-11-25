@@ -6,7 +6,7 @@ export const categories = [
     },
     {
         id : 2,
-        title : 'Starter',
+        title : 'Starters',
         urlParamName : 'Starters' 
     },
     {
