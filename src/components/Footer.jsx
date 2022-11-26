@@ -10,7 +10,7 @@ import './IconStyles.css'
 
 const Footer = () => {
   return (
-    <footer className = 'bg-black w-screen h-auto mt-8'>
+    <footer className = 'bg-black w-screen h-auto mt-16'>
         <div className='ml-64 mr-52'>
         <div className = 'grid grid-cols-3'>
             <div className='mt-20 mb-12 text-footerHeader font-semibold'>

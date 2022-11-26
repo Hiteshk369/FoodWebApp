@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import {BiSearch , BiLogOut} from 'react-icons/bi'
 import {TbDiscount2} from 'react-icons/tb'
 import {IoIosHelpBuoy} from 'react-icons/io'
-import {BsCart , BsPlus} from 'react-icons/bs'
+import {BsFillCartCheckFill , BsPlus} from 'react-icons/bs'
 import './Styles.css';
 
 
@@ -33,6 +33,15 @@ const Header = () => {
     setisMenu('false');
     localStorage.clear();
     navigate('/')
+  }
+
+  const cartShow = useSelector((state)=>state.reducers.cartShow);
+
+  const showCart = () => {
+    dispatch({
+      type : 'SET_CARTSHOW',
+      cartShow : !cartShow
+    })
   }
 
   return (
@@ -79,14 +88,15 @@ const Header = () => {
                     </div>
                   </li>
                   <li className="flex items-center py-8 justify-center cursor-pointer  transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
-                    <div className='flex'>
-                    <BsCart style={{
+                    <div className='flex' onClick = {showCart}>
+                    <BsFillCartCheckFill style={{
                       'fontSize':"20px",
                       'fontWeight':"bold"
                     }}/>
                     <Loctext className = " font-semibold mx-3  cursor-pointer  transition duration-200 ease-in-out">
                       Cart
                     </Loctext>
+                    
                     </div>
                   </li>
                   <li className="flex items-center py-9 justify-center cursor-pointer w-56 relative gap-1">

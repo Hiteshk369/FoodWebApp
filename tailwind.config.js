@@ -57,11 +57,16 @@ module.exports = {
         instaColor : '#8a3ab9',
         titleColor : '#feb400',
         logoColor : '#fc8019',
+        cartBg: "#282a2c",
+        cartItem: "#2e3033",
+        cartTotal: "#343739"
       },
       fontFamily:{
         poppins : 'poppins',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+  ],
 }

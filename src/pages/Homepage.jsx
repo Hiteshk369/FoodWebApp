@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Carousel from '../components/Carousel'
+import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import HomeMenu from '../components/HomeMenu'
@@ -24,6 +25,8 @@ const Homepage = () => {
     fetchItems();
   },);
 
+  const cartShow = useSelector((state)=>state.reducers.cartShow)
+
   return (
     <>
         <Header />
@@ -31,6 +34,11 @@ const Homepage = () => {
         <HomeNav />
         <HomeMenu />
         <Footer />
+        {
+          cartShow && (
+            <Cart />
+          )
+        }
     </>
   )
 }
