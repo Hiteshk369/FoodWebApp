@@ -34,7 +34,7 @@ const Loginpage = () => {
   return (
     <div className='grid grid-cols-2 h-screen'>
         <div>
-        <div className=' flex items-center h-48 mt-6  justify-center'>
+        <div className=' flex items-center h-48 mt-6 justify-center '>
             <div className='flex items-center'>
                 <div >
                     <img src={Logo} className='w-56' alt="logo" />
@@ -55,8 +55,8 @@ const Loginpage = () => {
              <button onClick={login} className='py-2 px-9 bg-black text-white font-semibold font-poppins flex items-center gap-2 hover:text-orangeColor' >
                 <BsGoogle/>LoginWithGoogle</button>  
         </motion.div>
-        <div className='mr-6 mt-10'>
-            <div className='grid grid-cols-2'>
+        <div className=' mt-10 '>
+            <div className='grid grid-cols-2 bg-slate-200 h-[285px]'>
                 <div className='flex flex-col items-center justify-center'>
                     <img src={FastDelivery} className = 'w-48 pr-3' alt="fastDelivery" />
                     <p className='font-poppins font-medium text-2xl'>Fast-Delivery</p>

@@ -4,13 +4,17 @@ import CreateContainer from '../components/CreateContainer'
 import Header from '../components/Header'
 import PermissionDenied from '../assets/permission denied.webp'
 
+
+
+
 const SaveDish = () => {
+
   const user = useSelector((state)=>state.reducers.user);
   return (
     <>
         <Header />
         {
-          user.email === 'parchahiteshkumar123@gmail.com' ?
+          user.email === `${process.env.REACT_APP_EMAIL}` ?
             <CreateContainer /> : 
             <div className='mt-36 flex flex-1 flex-col items-center justify-center gap-6'>
               <img src={PermissionDenied} className='w-508' alt="" />
