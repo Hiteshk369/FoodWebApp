@@ -47,9 +47,9 @@ const Header = () => {
   return (
     <div className='w-screen h-auto flex flex-col' >
     <header className = "w-screen h-100 fixed z-50 bg-white" >
-        <div className = "hidden w-full md:flex pt-3 pb-3 justify-evenly h-24">
+        <div className = "hidden w-full md:flex md:pt-3 md:pb-3 justify-evenly md:h-24">
             <div className="flex items-center"onClick={() => setisMenu(false)}>
-                <LogoImg src= { Logo } className = " pt-4 object-cover" alt="logo" />
+                <img src= { Logo } className = "md:pt-4 object-cover w-32" alt="logo" />
             </div>
               <ul className = "flex gap-10 items-center justify-center">
                   <li className=" flex items-center justify-center cursor-pointer py-8 buttonColor transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
@@ -129,6 +129,52 @@ const Header = () => {
 
               </ul>  
         </div>
+
+        {/* Moblie view */}
+
+        <div className='flex md:hidden w-full h-full'>
+
+          <div className="flex items-center h-20 justify-center" onClick={() => setisMenu(false)}>
+              <img src= { Logo } width='80px' height='60px' className = "object-cover" alt="logo" />
+          </div>
+          
+          <div className="flex ml-auto items-center justify-center cursor-pointer relative gap-1 mr-4">
+            <div className="flex items-center mr-6 justify-center cursor-pointer transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
+              <div className='flex' onClick = {showCart}>
+              <BsFillCartCheckFill style={{
+                'fontSize':"22px",
+                'fontWeight':"bold"
+              }}/>
+              </div>
+            </div>
+
+            <motion.img src={user ? user.photoURL : Avatar}
+              onClick={openMenu}
+              alt="avatar"
+              className=' w-10 rounded-full'
+              whileTap={{scale : 0.9}} />
+            {
+              isMenu && (
+                <motion.div className='flex flex-col absolute top-16 py-2 w-40 z-50 border bg-white rounded-lg gap-2 right-1'
+                initial = {{opacity : 0}}
+                animate = {{opacity : 1}}
+                exit = {{opacity : 0}}
+                >
+                  {
+                    user.email === `${process.env.REACT_APP_EMAIL}` && (
+                      <Link to='/create'><p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Create Item <BsPlus size='20px' /></p></Link>
+                    )
+                  }
+
+                  <p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Offers <TbDiscount2 size='18px' /></p>
+                  <p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Help <IoIosHelpBuoy size='18px' /></p>
+                  <p className='flex items-center justify-center gap-2 text-sm hover:bg-slate-200 rounded-lg p-2 mx-1' onClick={clearStorage}>Logout <BiLogOut size='20px' /></p>
+                </motion.div>
+              )
+            }
+                    
+          </div>
+        </div>
     </header>
     </div>
   )
@@ -137,11 +183,6 @@ const Header = () => {
 const Loctext = styled.p`
   font-family: 'arial';
 `
-const LogoImg = styled('img')({
-  height : '100px',
-  width : '145px',
-
-})
 
 
 export default Header;

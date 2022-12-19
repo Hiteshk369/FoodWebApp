@@ -5,7 +5,7 @@ import {motion} from 'framer-motion';
 
 const BannerCard = ({banner}) => {
   return (
-    <div>
+    <div className='flex items-center justify-center'>
         <motion.div whileHover={{
             scale : 1.1,
         }}>
