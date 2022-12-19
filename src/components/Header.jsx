@@ -8,7 +8,8 @@ import styled from 'styled-components'
 import {BiSearch , BiLogOut} from 'react-icons/bi'
 import {TbDiscount2} from 'react-icons/tb'
 import {IoIosHelpBuoy} from 'react-icons/io'
-import {BsFillCartCheckFill , BsPlus} from 'react-icons/bs'
+import {MdShoppingBasket} from 'react-icons/md'
+import {BsPlus} from 'react-icons/bs'
 import './Styles.css';
 
 
@@ -44,12 +45,14 @@ const Header = () => {
     })
   }
 
+  const cartItems = useSelector((state)=>state.reducers.cartItems);
+
   return (
     <div className='w-screen h-auto flex flex-col' >
     <header className = "w-screen h-100 fixed z-50 bg-white" >
         <div className = "hidden w-full md:flex md:pt-3 md:pb-3 justify-evenly md:h-24">
             <div className="flex items-center"onClick={() => setisMenu(false)}>
-                <img src= { Logo } className = "md:pt-4 object-cover w-32" alt="logo" />
+                <Link to='/home'><img src= { Logo } className = "md:pt-4 object-cover w-32" alt="logo" /></Link>
             </div>
               <ul className = "flex gap-10 items-center justify-center">
                   <li className=" flex items-center justify-center cursor-pointer py-8 buttonColor transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
@@ -64,7 +67,7 @@ const Header = () => {
                     </div>
                     
                   </li>
-                  
+                  <Link to='/offers'>
                   <li className="flex items-center justify-center cursor-pointer py-8 transition  duration-200  ease-in-out"onClick={() => setisMenu(false)}>
                   <div className='flex'>
                     <TbDiscount2 style={{
@@ -76,6 +79,8 @@ const Header = () => {
                     </Loctext>
                   </div>
                   </li>
+                  </Link>
+                  <Link to='/help'>
                   <li className="flex items-center py-8 duration-100 ease-in-out cursor-pointer justify-center"onClick={() => setisMenu(false)}>
                     <div className='flex'>
                     <IoIosHelpBuoy style={{
@@ -87,12 +92,20 @@ const Header = () => {
                     </Loctext>
                     </div>
                   </li>
-                  <li className="flex items-center py-8 justify-center cursor-pointer  transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
-                    <div className='flex' onClick = {showCart}>
-                    <BsFillCartCheckFill style={{
-                      'fontSize':"20px",
+                  </Link>
+                  <li className="flex items-center py-8 justify-center cursor-pointer transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
+                    <div className='flex ' onClick = {showCart}>
+                    <MdShoppingBasket style={{
+                      'fontSize':"22px",
                       'fontWeight':"bold"
                     }}/>
+                    {
+                      cartItems && cartItems.length > 0 && (
+                        <div className='absolute top-7 right-[545px] flex items-center justify-center bg-red-600 w-4 h-4 rounded-full items-center top-0'>
+                          <p className='text-white text-xs font-semibold'>{cartItems.length}</p> 
+                        </div>
+                      )
+                    }
                     <Loctext className = " font-semibold mx-3  cursor-pointer  transition duration-200 ease-in-out">
                       Cart
                     </Loctext>
@@ -135,16 +148,23 @@ const Header = () => {
         <div className='flex md:hidden w-full h-full'>
 
           <div className="flex items-center h-20 justify-center" onClick={() => setisMenu(false)}>
-              <img src= { Logo } width='80px' height='60px' className = "object-cover" alt="logo" />
+              <Link to='/home'><img src= { Logo } width='80px' height='60px' className = "object-cover" alt="logo" /></Link>
           </div>
           
           <div className="flex ml-auto items-center justify-center cursor-pointer relative gap-1 mr-4">
             <div className="flex items-center mr-6 justify-center cursor-pointer transition duration-200 ease-in-out" onClick={() => setisMenu(false)}>
               <div className='flex' onClick = {showCart}>
-              <BsFillCartCheckFill style={{
-                'fontSize':"22px",
+              <MdShoppingBasket style={{
+                'fontSize':"30px",
                 'fontWeight':"bold"
               }}/>
+              {
+                cartItems && cartItems.length > 0 && (
+                  <div className='absolute right-16 top-6 flex items-center justify-center bg-red-600 w-4 h-4 rounded-full items-center top-0'>
+                    <p className='text-white text-xs font-semibold'>{cartItems.length}</p> 
+                  </div>
+                )
+              }
               </div>
             </div>
 
@@ -166,8 +186,8 @@ const Header = () => {
                     )
                   }
 
-                  <p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Offers <TbDiscount2 size='18px' /></p>
-                  <p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Help <IoIosHelpBuoy size='18px' /></p>
+                  <Link to='/offers'><p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Offers <TbDiscount2 size='18px' /></p></Link>
+                  <Link to='/help'><p className='text-sm font-poppins flex items-center gap-2 justify-between p-2 mx-1 rounded-lg hover:bg-slate-200'>Help <IoIosHelpBuoy size='18px' /></p></Link>
                   <p className='flex items-center justify-center gap-2 text-sm hover:bg-slate-200 rounded-lg p-2 mx-1' onClick={clearStorage}>Logout <BiLogOut size='20px' /></p>
                 </motion.div>
               )

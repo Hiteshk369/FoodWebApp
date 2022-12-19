@@ -41,9 +41,6 @@ const Cart = () => {
             return accumulator + (item.qty * item.price);     
       },0);
       setTotal(totalPrice);
-      console.log(total)
-      
-
     },[total , cartItems, flag]);
     
 

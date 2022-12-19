@@ -144,7 +144,7 @@ const CreateContainer = () => {
   return (
     <section className='mt-28 w-full h-auto flex flex-col items-center justify-center '>
 
-        <div className=' w-[60%] p-3 px-10 flex flex-col bg-slate-100 gap-3 border rounded-lg items-center justify-center border-gray-300'>
+        <div className='w-[60%] small:w-[90%] p-3 px-10 flex flex-col bg-slate-100 gap-3 border rounded-lg items-center justify-center border-gray-300'>
           {
             fields && (
               <motion.p 
@@ -166,11 +166,11 @@ const CreateContainer = () => {
            onChange={(e)=>setTitle(e.target.value)} />
          </div>
 
-         <select onChange={(e)=>setCategory(e.target.value)} className = 'w-full p-2 rounded-lg font-poppins text-lightColor outline-none' required>
+         <select onChange={(e)=>setCategory(e.target.value)} className = 'w-full p-2 small:p-1 rounded-lg font-poppins text-lightColor outline-none' required>
           <option defaultValue='true' value='other' className='invisible'>Select Category</option>
           {
             categories && categories.map((item) => (
-              <option className = 'text-red bg-white font-poppins border-0 outline-none capitalize' key={item.id}
+              <option className = 'small:w-40 text-red small:text-sm bg-white font-poppins border-0 outline-none capitalize' key={item.id}
               value={item.urlParamName}>{item.title}</option>
             ))
           }

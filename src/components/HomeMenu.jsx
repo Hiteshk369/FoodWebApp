@@ -20,7 +20,7 @@ const HomeMenu = () => {
 
   useEffect(() => {
     fetchItems();
-  },[]);
+  });
   
   const food = useSelector((state) => state.reducers.foodItems);
   const filterItem = useSelector((state) => state.reducersItem.filterItem );
@@ -29,7 +29,7 @@ const HomeMenu = () => {
     <>
       {
         food && food.length > 0 ? (
-          <div className ='flex ml-28  gap-8 mr-28 mt-5 flex-wrap '>
+          <div className ='flex md:ml-28 gap-8 md:mr-28 mt-5 flex-wrap small:flex-col small:items-center small:justify-center small:gap-3'>
     {
       filterItem === 'All Dishes' ? 
       food.map((food) => {
@@ -60,7 +60,7 @@ const HomeMenu = () => {
       }) : 
       <div className='flex flex-col w-full items-center justify-center gap-4'>
         <img className = 'w-300' src={NoData} alt="" />
-        <p className='font-poppins text-xl text-lightColor'>Dishes are not available in this category</p>
+        <p className='font-poppins text-xl text-lightColor small:text-lg small:flex small:items-center small:justify-center'>Dishes are not available in this category</p>
       </div>
     
     }

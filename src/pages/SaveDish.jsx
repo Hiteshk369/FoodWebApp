@@ -3,15 +3,19 @@ import { useSelector } from 'react-redux';
 import CreateContainer from '../components/CreateContainer'
 import Header from '../components/Header'
 import PermissionDenied from '../assets/permission denied.webp'
-
-
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const SaveDish = () => {
 
   const user = useSelector((state)=>state.reducers.user);
   return (
     <>
+        <HelmetProvider>
+          <Helmet>
+            <title>GoodFood | Create</title>
+          </Helmet>
+        </HelmetProvider>
+        
         <Header />
         {
           user.email === `${process.env.REACT_APP_EMAIL}` ?

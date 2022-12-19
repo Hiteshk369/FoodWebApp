@@ -4,13 +4,13 @@ import {getStorage} from 'firebase/storage';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUlXwmQgNVEawnRIYOCN6q9JWHOMcjoNY",
-    authDomain: "swiggyclone-1a429.firebaseapp.com",
-    databaseURL: "https://swiggyclone-1a429-default-rtdb.firebaseio.com",
-    projectId: "swiggyclone-1a429",
-    storageBucket: "swiggyclone-1a429.appspot.com",
-    messagingSenderId: "290788632205",
-    appId: "1:290788632205:web:b1739cb93a870ec6be24c4"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
   };
 
   const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);

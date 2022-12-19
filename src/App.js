@@ -5,6 +5,8 @@ import Homepage from './pages/Homepage';
 import Loginpage from './pages/Loginpage';
 import SaveDish from './pages/SaveDish';
 import { getFoodItems } from './utils/FirebaseFunctions';
+import Offerspage from './pages/Offerspage';
+import Helppage from './pages/Helppage';
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
           <Route path='/*' element = {<Loginpage />} />
           <Route path='/home' element = {<Homepage />} />
           <Route path='/create' element = {<SaveDish />} />
+          <Route path='/offers' element = {<Offerspage />} />
+          <Route path='/help' element = {<Helppage />} />
         </Routes>
       </main>
     </div>

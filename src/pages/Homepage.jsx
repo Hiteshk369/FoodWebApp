@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import HomeMenu from '../components/HomeMenu'
 import HomeNav from '../components/HomeNav'
 import { getFoodItems } from '../utils/FirebaseFunctions'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 const Homepage = () => {
 
@@ -29,6 +30,12 @@ const Homepage = () => {
 
   return (
     <>
+        <HelmetProvider>
+          <Helmet>
+            <title>GoodFood | Home</title>
+          </Helmet>
+        </HelmetProvider>
+        
         <Header />
         <Carousel />
         <HomeNav />

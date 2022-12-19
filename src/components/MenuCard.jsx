@@ -25,15 +25,15 @@ const MenuCard = ({food}) => {
     useEffect(() => {
       addtocart();
     
-    }, [items ])
+    }, [items])
     
 
   return (
    
     
-    <div className='block relative border p-6 cursor-pointer rounded-xl border-white hover:border-borderColor h-340 w-370 '>
+    <div className='block relative border p-6 cursor-pointer rounded-xl md:border-white md:hover:border-borderColor h-340 w-370 small:h-300 small:w-300'>
     <div>
-        <ItemImg className="mt-3 rounded-xl" src={food?.imageUrl} alt="Cake" />
+        <ItemImg className="mt-3 rounded-xl small:mt-0" src={food?.imageUrl} alt="Cake" />
     </div>
     <div className='mt-3'>
         <p className='font-poppins font-semibold text-lg'>{food?.title}</p>

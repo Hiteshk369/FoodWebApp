@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import food from '../assets/food.jpg'
 import Logo from '../assets/logo1.png'
 import FastDelivery from '../assets/FastDelivery.png'
@@ -9,8 +9,7 @@ import {motion} from 'framer-motion'
 import {BsGoogle} from 'react-icons/bs'
 import { useSelector , useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react'
-
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 
 const Loginpage = () => {
@@ -44,6 +43,13 @@ const Loginpage = () => {
     })
 
   return (
+    <>
+    <HelmetProvider>
+        <Helmet>
+            <title>GoodFood | Login</title>
+        </Helmet>
+    </HelmetProvider>
+
     <div className='md:grid md:grid-cols-2 h-screen'>
         <div>
         <div className=' flex items-center h-48 mt-6 justify-center '>
@@ -51,9 +57,6 @@ const Loginpage = () => {
                 <div >
                     <img src={Logo} className='w-56 small:w-48' alt="logo" />
                 </div>
-                {/* <div>
-                    <p className='tracking-wide text-3xl font-poppins font-semibold  text-logoColor'>GooD FooD</p>
-                </div> */}
             </div>
             
         </div>
@@ -69,7 +72,7 @@ const Loginpage = () => {
         </motion.div>
         {
             width < 768 && (
-                <div className='flex flex-col items-center justify-center m-9 text-sm text-lightColor font-poppins'>
+                <div className='flex flex-col items-center justify-center m-7 text-sm text-lightColor font-poppins'>
                     <p>*Login with Google to enjoy food from your</p>
                     <p>favourite restaurant</p>
                 </div>
@@ -102,6 +105,7 @@ const Loginpage = () => {
             )
         }  
     </div>
+    </>
   )
 }
 
