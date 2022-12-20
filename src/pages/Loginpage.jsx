@@ -80,7 +80,7 @@ const Loginpage = () => {
         }
        
         <div className=' mt-10 '>
-            <div className='grid grid-cols-2 bg-slate-200 md:h-[285px] small:pb-16 small:pt-10 small:mt-32'>
+            <div className='grid grid-cols-2 bg-slate-200 md:h-[287px] small:pb-16 small:pt-10 small:mt-32'>
                 <div className='flex flex-col items-center justify-center'>
                     <img src={FastDelivery} className = 'w-48 pr-3 small:w-36 small:pt-2' alt="fastDelivery" />
                     <p className='font-poppins font-medium text-2xl small:text-lg small:pt-2 small:pb-2'>Fast-Delivery</p>

@@ -7,6 +7,7 @@ import SaveDish from './pages/SaveDish';
 import { getFoodItems } from './utils/FirebaseFunctions';
 import Offerspage from './pages/Offerspage';
 import Helppage from './pages/Helppage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/create' element = {<SaveDish />} />
           <Route path='/offers' element = {<Offerspage />} />
           <Route path='/help' element = {<Helppage />} />
+          <Route path='/checkout' element = {<CheckoutPage />} />
         </Routes>
       </main>
     </div>

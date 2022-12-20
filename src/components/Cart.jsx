@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import EmptyCart from '../assets/EmptyCart.svg'
 import CartItem from './CartItem'
+import { Link } from 'react-router-dom'
 
 
 
@@ -85,9 +86,11 @@ const Cart = () => {
                 </div>
                 {
                     user ? (
+                        <Link to='/checkout' className = 'w-full'>
                         <motion.button whileTap={{scale : 0.9}} className = 'w-full rounded-lg  bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 py-2 text-lg font-poppins font-semibold hover:shadow-lg'>
                             Check out
                         </motion.button>
+                        </Link>
                     ) :
                     (
                         <motion.button whileTap={{scale : 0.9}} className = 'w-full rounded-lg  bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 py-2 text-lg font-poppins font-semibold hover:shadow-lg'>
