@@ -1,57 +1,21 @@
-import React from 'react'
-import GooglePayButton from '@google-pay/button-react';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import {motion} from 'framer-motion';
 
-const PaymentButton = ({total}) => {
+const PaymentButton = () => {
 
-    const new_total = total+40;
-    const FinalPrice = String(new_total);
+  const [success, setSucces] = useState(false);
+  const navigate = useNavigate();
+
+  const checkPayment = () => {
+   setSucces(true);
+   if(success === true){
+      navigate('/confirmation')
+   }
+  }
+
   return (
- <GooglePayButton
-  environment="TEST"
-  paymentRequest={{
-    apiVersion: 2,
-    apiVersionMinor: 0,
-    allowedPaymentMethods: [
-      {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['MASTERCARD', 'VISA'],
-        },
-        tokenizationSpecification: {
-          type: 'PAYMENT_GATEWAY',
-          parameters: {
-            gateway: 'example',
-            gatewayMerchantId: 'exampleGatewayMerchantId',
-          },
-        },
-      },
-    ],
-    merchantInfo: {
-      merchantId: '12345678901234567890',
-      merchantName: 'Hitesh Kumar',
-    },
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPriceLabel: 'Total',
-      totalPrice: FinalPrice,
-      currencyCode: 'INR',
-      countryCode: 'IN',
-    },
-    shippingAddressRequired:true,
-    callbackIntents:['PAYMENT_AUTHORIZATION']
-  }}
-  onLoadPaymentData={paymentRequest => {
-    console.log('load payment data', paymentRequest);
-  }}
-  onPaymentAuthorized={paymentData => {
-    console.log(paymentData);
-    return {transactionState : 'SUCCESS'}
-  }}
-  existingPaymentMethodRequired='false'
-  buttonColor='black'
-  buttonType='buy'
-    />
+    <motion.div whileTap={{scale:0.9}} className='p-3 border-none bg-cartBg text-white rounded-3xl px-10 cursor-pointer' onClick={checkPayment}>Payment</motion.div>
   )
 }
 

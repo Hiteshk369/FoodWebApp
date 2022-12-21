@@ -7,7 +7,8 @@ export const initialState = {
     user : userInfo,
     foodItems : null,
     cartShow : false,
-    cartItems : cartInfo 
+    cartItems : cartInfo ,
+    destination : ''
 }
 
 const reducers = (state = initialState, action) => {
@@ -33,7 +34,11 @@ const reducers = (state = initialState, action) => {
                 ...state,
                 cartItems : action.cartItems,
             };
-        
+        case 'SET_DESTINATION' :
+            return{
+                ...state,
+                destination : action.destination
+            }
 
         default :
             return state;

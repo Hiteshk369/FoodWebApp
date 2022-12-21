@@ -4,6 +4,7 @@ export const actionType = () => {
         SET_FOOD_ITEMS : 'SET_FOOD_ITEMS',
         SET_FILTER_ITEM : 'SET_FILTER_ITEM',
         SET_CARTSHOW : 'SET_CARTSHOW',
-        SET_CART_ITEMS : 'SET_CART_ITEMS'
+        SET_CART_ITEMS : 'SET_CART_ITEMS',
+        SET_DESTINATION : 'SET_DESTINATION'  
     }
 }

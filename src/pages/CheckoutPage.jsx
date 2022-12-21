@@ -8,8 +8,18 @@ import CartItem from '../components/CartItem'
 import Cart from '../components/Cart'
 import { motion } from 'framer-motion'
 import PaymentButton from '../components/PaymentButton'
+import {  useJsApiLoader, Autocomplete } from '@react-google-maps/api'
+import { useRef } from 'react'
+import Loader from '../components/Loader'
+
+
 
 function CheckoutPage() {
+
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey : process.env.REACT_APP_MAPS_API_KEY,
+        libraries : ['places'],
+      })
 
     const cartItems = useSelector((state)=>state.reducers.cartItems);
     const cartShow = useSelector((state)=>state.reducers.cartShow);
@@ -22,6 +32,9 @@ function CheckoutPage() {
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
     const [saveUser, setSaveUser] = useState(false); 
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+    const destinationRef = useRef();
 
     const [flag, setFlag] = useState(1);
     const [total, setTotal] = useState(0);
@@ -41,16 +54,25 @@ function CheckoutPage() {
       },[total , cartItems, flag]);
     
       const SaveShippingDetails = () => {
-        if(firstName === '' || lastName === '' || streetAddress === '' || city === '' || phone === ''){
+        if(firstName === '' || lastName === '' || destinationRef === '' || city === '' || phone === ''){
             alert('Enter the Shipping Details to continue')
         }else{
             setSaveUser(true);
+            dispatch({
+            type : 'SET_DESTINATION',
+            destination : destinationRef.current.value
+        })
         }
       }
 
       useEffect(() => {
+        
         closeCart();
       },[])
+
+      if(!isLoaded){
+        return <Loader />
+     }
       
 
   return (
@@ -78,9 +100,15 @@ function CheckoutPage() {
                             <input placeholder='First Name' type="text" className='border text-base p-4 w-[50%] font-poppins' value = {firstName} onChange={(e)=>setFirstName(e.target.value)} required />
                             <input placeholder='Last Name' type="text" className='border text-base p-4 w-[50%] font-poppins' value={lastName} onChange={(e)=>setLastName(e.target.value)} required />
                         </div>
-                        <div>
-                            <input placeholder='Street Address' type="text" className='border text-base p-4 w-full font-poppins' value={streetAddress} onChange={(e)=>setStreetAddress(e.target.value)} required  />
-                        </div>
+                        
+                        
+                        
+                        <Autocomplete>
+                            <input placeholder='Street Address' type="text" className='border text-base p-4 w-full font-poppins'  ref={destinationRef} required  />
+                        </Autocomplete >
+                        
+                        
+
                         <div className='flex flex-1 gap-4'>
                             <input placeholder='City' type="text" className='border text-base p-4 w-[50%] font-poppins' value={city} onChange={(e)=>setCity(e.target.value)} required />
                             <input placeholder='Phone Number' type="tel" className='border text-base p-4 w-[50%] font-poppins' value={phone} onChange={(e)=>setPhone(e.target.value)} required />
@@ -100,11 +128,14 @@ function CheckoutPage() {
                         </div>   
                     </div>
                     {
-                        saveUser && cartItems.length > 0 && (
-                            <motion.div whileTap={{scale:0.9}}  className='m-4 flex justify-center items-center'>
-                                <PaymentButton total={total} />
+                        saveUser && cartItems.length > 0 && 
+                        (
+                            <motion.div whileTap={{scale:0.9}}  className='m-4 flex justify-center items-center flex-col'>
+                                <PaymentButton total={total} paymentSuccess={paymentSuccess} setPaymentSuccess={setPaymentSuccess} />
+
                             </motion.div>
                         )
+                        
 
                     }
                 </div>
@@ -223,7 +254,11 @@ function CheckoutPage() {
                         <div className='flex flex-col gap-2'>
                             <input placeholder='First Name' type="text" className='border text-sm p-3 w-full font-poppins' value = {firstName} onChange={(e)=>setFirstName(e.target.value)} required />
                             <input placeholder='Last Name' type="text" className='border text-sm p-3 w-full font-poppins' value={lastName} onChange={(e)=>setLastName(e.target.value)} required />
-                            <input placeholder='Street Address' type="text" className='border text-sm p-3 w-full font-poppins' value={streetAddress} onChange={(e)=>setStreetAddress(e.target.value)} required  />
+
+                            <Autocomplete>
+                            <input placeholder='Street Address' type="text" className='border text-sm p-3 w-full font-poppins'  ref={destinationRef} required  />
+                            </Autocomplete >
+
                             <input placeholder='City' type="text" className='border text-sm p-3 w-full font-poppins' value={city} onChange={(e)=>setCity(e.target.value)} required />
                             <input placeholder='Phone Number' type="tel" className='border text-sm p-3 w-full font-poppins' value={phone} onChange={(e)=>setPhone(e.target.value)} required />
                         </div>
@@ -243,8 +278,9 @@ function CheckoutPage() {
                     </div>
                     {
                         saveUser && cartItems.length > 0 && (
-                            <motion.div whileTap={{scale:0.9}}  className='w-full mt-3 mb-3 flex justify-center items-center'>
-                                <PaymentButton total={total} />
+                            <motion.div whileTap={{scale:0.9}}  className='m-4 flex justify-center items-center flex-col'>
+                                <PaymentButton total={total} paymentSuccess={paymentSuccess} setPaymentSuccess={setPaymentSuccess} />
+
                             </motion.div>
                         )
                     } 
