@@ -8,7 +8,11 @@ export const initialState = {
     foodItems : null,
     cartShow : false,
     cartItems : cartInfo ,
-    destination : ''
+    destination : '',
+    orderDetails : null,
+    distance : '',
+    duration : '',
+    directionResponse : ''
 }
 
 const reducers = (state = initialState, action) => {
@@ -38,7 +42,23 @@ const reducers = (state = initialState, action) => {
             return{
                 ...state,
                 destination : action.destination
-            }
+            };
+        case 'SET_DISTANCE' :
+            return{
+                ...state,
+                destination : action.distance
+            };
+        case 'SET_DURATION' :
+            return{
+                ...state,
+                destination : action.duration
+            };
+        case 'SET_DIRECTION_RESPONSE' :
+            return{
+                ...state,
+                destination : action.directionResponse
+            };
+        
 
         default :
             return state;

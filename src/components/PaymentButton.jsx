@@ -1,21 +1,62 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {motion} from 'framer-motion';
+import GooglePayButton from "@google-pay/button-react";
 
-const PaymentButton = () => {
+const PaymentButton = ({total}) => {
 
-  const [success, setSucces] = useState(false);
   const navigate = useNavigate();
+  const finalPrice = String(total + 40)
 
-  const checkPayment = () => {
-   setSucces(true);
-   if(success === true){
-      navigate('/confirmation')
-   }
+  const paymentRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [
+      {
+        type: "CARD",
+        parameters: {
+          allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+          allowedCardNetworks: ["MASTERCARD", "VISA"]
+        },
+        tokenizationSpecification: {
+          type: "PAYMENT_GATEWAY",
+          parameters: {
+            gateway: "example",
+            gatewayMerchantId: "exampleGatewayMerchantId"
+          }
+        }
+      }
+    ],
+    merchantInfo: {
+      merchantId: "12345678901234567890",
+      merchantName: "Demo Merchant"
+    },
+    transactionInfo: {
+      totalPriceStatus: "FINAL",
+      totalPriceLabel: "Total",
+      totalPrice: finalPrice,
+      currencyCode: "INR",
+      countryCode: "IN"
+    },
+    shippingAddressRequired:true,
+    callbackIntents:['PAYMENT_AUTHORIZATION']
+  };
+
+  function handleLoadPaymentData(paymentData) {
+    //console.log("load payment data", paymentData);
+    navigate('/confirmation')
+  }
+
+  function handlePaymentAuthorized(paymentData) {
+    // console.log(paymentData);
+    return {transactionState : 'SUCCESS'}
   }
 
   return (
-    <motion.div whileTap={{scale:0.9}} className='p-3 border-none bg-cartBg text-white rounded-3xl px-10 cursor-pointer' onClick={checkPayment}>Payment</motion.div>
+    <GooglePayButton
+        paymentRequest={paymentRequest}
+        onLoadPaymentData={handleLoadPaymentData}
+        onPaymentAuthorized={handlePaymentAuthorized}
+    />
   )
 }
 

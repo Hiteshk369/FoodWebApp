@@ -14,3 +14,9 @@ export const getFoodItems = async() => {
 
     return items.docs.map((doc) => doc.data());
 };
+
+export const saveOrderDetails = async(data) => {
+    await setDoc(doc(firestore, "orderDetails", `${Date.now()}`),data,{
+        merge : true,
+    });
+};

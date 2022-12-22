@@ -9,6 +9,7 @@ import Offerspage from './pages/Offerspage';
 import Helppage from './pages/Helppage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import PaymentSuccessful from './components/PaymentSuccessful';
 
 function App() {
 

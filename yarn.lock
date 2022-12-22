@@ -12643,6 +12643,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+urid@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/urid/-/urid-1.1.0.tgz#bb240eb56523e64e91100d4c0eefcf98ad9dab60"
+  integrity sha512-8fBzDnX60oq4B0ZXlNVjFBx4NY/kotJ0GmgCcdC64BgaDBwvyqyDka8rLHsT/dcgjFL8rffkhKgOAdQlnkEwLA==
+
 url-join@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-0.0.1.tgz#1db48ad422d3402469a87f7d97bdebfe4fb1e3c8"

@@ -28,7 +28,7 @@ function CheckoutPage() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
+    
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
     const [saveUser, setSaveUser] = useState(false); 
