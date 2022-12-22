@@ -14,7 +14,10 @@ import Loader from '../components/Loader'
 
 
 
+
 function CheckoutPage() {
+
+    
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey : process.env.REACT_APP_MAPS_API_KEY,
@@ -39,6 +42,8 @@ function CheckoutPage() {
     const [flag, setFlag] = useState(1);
     const [total, setTotal] = useState(0);
 
+    
+
     const closeCart = () => {
         dispatch({
             type : 'SET_CARTSHOW',
@@ -61,7 +66,7 @@ function CheckoutPage() {
             dispatch({
             type : 'SET_DESTINATION',
             destination : destinationRef.current.value
-        })
+            })
         }
       }
 
@@ -70,6 +75,7 @@ function CheckoutPage() {
         closeCart();
       },[])
 
+      
       if(!isLoaded){
         return <Loader />
      }

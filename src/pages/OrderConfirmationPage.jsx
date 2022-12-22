@@ -9,21 +9,21 @@ import { useSelector } from 'react-redux'
 import Lottie from "lottie-react";
 import CookingAnimation from '../assets/6519-cooking.json'
 import Rider from '../assets/98485-tracking-delivery.json'
-import urid from 'urid'
+
 import { saveOrderDetails } from '../utils/FirebaseFunctions'
 
 
 const OrderConfirmationPage = () => {
 
-  const [ renderSuccess, setRenderSuccess ] = useState(true);
+  const [ renderSuccess, setRenderSuccess ] = useState(false);
   const [ orderPicked , setOrderPicked ] = useState(false);
-  const [orderId, setOrderId] = useState('');
-
+  
+  const orderId = useSelector((state)=>state.reducersItem.OrderId)
   const user = useSelector((state)=>state.reducers.user)
   const cartItems = useSelector((state)=>state.reducers.cartItems);
   const destination = useSelector((state)=>state.reducers.destination);
   let orderTime = new Date();
-  let orderIdGenerated = '#'+urid(10, 'ALPHANUM')
+  
 
   const [total, setTotal] = useState(0);
 
@@ -49,9 +49,6 @@ const OrderConfirmationPage = () => {
     if(origin === '' || destination === ''){
       return
     }
-    setTimeout(()=>{
-      setRenderSuccess(false)
-    },2000)
     //eslint-disable-next-line no-undef
     const directionService = new google.maps.DirectionsService();
     const results = await directionService.route({
@@ -60,49 +57,49 @@ const OrderConfirmationPage = () => {
       //eslint-disable-next-line no-undef
       travelMode : google.maps.TravelMode.DRIVING
     })
-
     setDirectionResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
+    console.log(directionResponse)
   }
 
     useEffect(()=>{
-      // setTimeout(()=>{
-      //   setRenderSuccess(false);
-      // },1000);
-
       calculateRoute();
-
-    },[])
-
-    
-    useEffect(()=>{
-      setOrderId(orderIdGenerated)
-      if(distance !== null){
-        const data = {
-          id : `${Date.now()}`,
-          username : user.displayName,
-          user_email : user.email,
-          OrderId : orderId,
-          Items : cartItems.length,
-          Total : String(total+40),
-          Duration : duration,
-          Distance : distance,
-          DeliveredLoc : destination
-        }
-        saveOrderDetails(data);
-      }
-    },[distance,duration]);
-    
-    useEffect(()=>{
-      setTimeout(()=>{
-        setOrderPicked(true);
-      },8000)
     })
 
-  if(!isLoaded){
-    return <Loader />
-  }
+  
+
+    
+    // useEffect(()=>{
+      
+    //   if(distance !== null){
+    //     const data = {
+    //       id : `${Date.now()}`,
+    //       username : user.displayName,
+    //       user_email : user.email,
+    //       OrderId : orderId,
+    //       Items : cartItems.length,
+    //       Total : String(total+40),
+    //       Duration : duration,
+    //       Distance : distance,
+    //       DeliveredLoc : destination
+    //     }
+    //     saveOrderDetails(data);
+    //   }
+    // },[distance,duration]);
+    
+    // useEffect(()=>{
+    //   setTimeout(()=>{
+    //     setOrderPicked(true);
+    //   },8000)
+    // },[orderPicked])
+
+    if(!isLoaded){
+      return <Loader />
+    }
+    
+
+  
   
 
   return (
@@ -145,8 +142,8 @@ const OrderConfirmationPage = () => {
           </div>
           <div className='flex flex-1 items-center justify-center md:pr-24 small:m-4 small:mt-8' >
             {
-              orderPicked ? <Lottie className='w-60 ' animationData={Rider} setSpeed={3} loop={true} /> :
-              <Lottie className='w-60 ' animationData={CookingAnimation} setSpeed={3} loop={true} />
+              orderPicked ? <Lottie className='w-60 ' animationData={Rider}  loop={true} /> :
+              <Lottie className='w-60 ' animationData={CookingAnimation}  loop={true} />
             }
             
             <div className='flex flex-col gap-1 md:items-center'>

@@ -1,11 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import GooglePayButton from "@google-pay/button-react";
+import  urid  from 'urid';
+import { useDispatch } from 'react-redux';
 
 const PaymentButton = ({total}) => {
 
+  const orderIdGen = '#' + urid(10, 'ALPHANUM')
   const navigate = useNavigate();
   const finalPrice = String(total + 40)
+  
+  const dispatch = useDispatch();
 
   const paymentRequest = {
     apiVersion: 2,
@@ -43,6 +48,10 @@ const PaymentButton = ({total}) => {
 
   function handleLoadPaymentData(paymentData) {
     //console.log("load payment data", paymentData);
+    dispatch({
+      type : 'SET_ORDER_ID',
+      OrderId : orderIdGen
+  })
     navigate('/confirmation')
   }
 
