@@ -9,16 +9,15 @@ import { useSelector } from 'react-redux'
 import Lottie from "lottie-react";
 import CookingAnimation from '../assets/6519-cooking.json'
 import Rider from '../assets/98485-tracking-delivery.json'
-
 import { saveOrderDetails } from '../utils/FirebaseFunctions'
 
 
 const OrderConfirmationPage = () => {
 
-  const [ renderSuccess, setRenderSuccess ] = useState(false);
+  const [ renderSuccess, setRenderSuccess ] = useState(true);
   const [ orderPicked , setOrderPicked ] = useState(false);
   
-  const orderId = useSelector((state)=>state.reducersItem.OrderId)
+  const orderId = useSelector((state)=>state.reducersItem.OrderId);
   const user = useSelector((state)=>state.reducers.user)
   const cartItems = useSelector((state)=>state.reducers.cartItems);
   const destination = useSelector((state)=>state.reducers.destination);
@@ -49,6 +48,9 @@ const OrderConfirmationPage = () => {
     if(origin === '' || destination === ''){
       return
     }
+    setTimeout(()=>{
+      setRenderSuccess(false)
+    },2000)
     //eslint-disable-next-line no-undef
     const directionService = new google.maps.DirectionsService();
     const results = await directionService.route({
@@ -57,49 +59,49 @@ const OrderConfirmationPage = () => {
       //eslint-disable-next-line no-undef
       travelMode : google.maps.TravelMode.DRIVING
     })
+
     setDirectionResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
-    console.log(directionResponse)
   }
 
     useEffect(()=>{
+      // setTimeout(()=>{
+      //   setRenderSuccess(false);
+      // },1000);
+
       calculateRoute();
+
+    },[])
+
+    
+    useEffect(()=>{
+      
+      if(distance !== null){
+        const data = {
+          id : `${Date.now()}`,
+          username : user.displayName,
+          user_email : user.email,
+          OrderId : orderId,
+          Items : cartItems.length,
+          Total : String(total+40),
+          Duration : duration,
+          Distance : distance,
+          DeliveredLoc : destination
+        }
+        saveOrderDetails(data);
+      }
+    },[distance,duration]);
+    
+    useEffect(()=>{
+      setTimeout(()=>{
+        setOrderPicked(true);
+      },8000)
     })
 
-  
-
-    
-    // useEffect(()=>{
-      
-    //   if(distance !== null){
-    //     const data = {
-    //       id : `${Date.now()}`,
-    //       username : user.displayName,
-    //       user_email : user.email,
-    //       OrderId : orderId,
-    //       Items : cartItems.length,
-    //       Total : String(total+40),
-    //       Duration : duration,
-    //       Distance : distance,
-    //       DeliveredLoc : destination
-    //     }
-    //     saveOrderDetails(data);
-    //   }
-    // },[distance,duration]);
-    
-    // useEffect(()=>{
-    //   setTimeout(()=>{
-    //     setOrderPicked(true);
-    //   },8000)
-    // },[orderPicked])
-
-    if(!isLoaded){
-      return <Loader />
-    }
-    
-
-  
+  if(!isLoaded){
+    return <Loader />
+  }
   
 
   return (

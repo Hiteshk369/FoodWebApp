@@ -14,10 +14,7 @@ import Loader from '../components/Loader'
 
 
 
-
 function CheckoutPage() {
-
-    
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey : process.env.REACT_APP_MAPS_API_KEY,
@@ -38,11 +35,10 @@ function CheckoutPage() {
     const [paymentSuccess, setPaymentSuccess] = useState(false);
 
     const destinationRef = useRef();
+    const mobileRef = useRef();
 
     const [flag, setFlag] = useState(1);
     const [total, setTotal] = useState(0);
-
-    
 
     const closeCart = () => {
         dispatch({
@@ -59,14 +55,14 @@ function CheckoutPage() {
       },[total , cartItems, flag]);
     
       const SaveShippingDetails = () => {
-        if(firstName === '' || lastName === '' || destinationRef === '' || city === '' || phone === ''){
+        if(firstName === '' || lastName === '' ||  city === '' || phone === ''){
             alert('Enter the Shipping Details to continue')
         }else{
             setSaveUser(true);
             dispatch({
             type : 'SET_DESTINATION',
-            destination : destinationRef.current.value
-            })
+            destination : mobileRef.current.value === '' ? destinationRef.current.value : mobileRef.current.value
+        })
         }
       }
 
@@ -75,7 +71,6 @@ function CheckoutPage() {
         closeCart();
       },[])
 
-      
       if(!isLoaded){
         return <Loader />
      }
@@ -110,7 +105,7 @@ function CheckoutPage() {
                         
                         
                         <Autocomplete>
-                            <input placeholder='Street Address' type="text" className='border text-base p-4 w-full font-poppins'  ref={destinationRef} required  />
+                            <input placeholder='Street Address' type="text" className='border text-base p-4 w-full font-poppins'  ref= {mobileRef} required  />
                         </Autocomplete >
                         
                         

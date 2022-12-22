@@ -1,6 +1,6 @@
 export const initialState = {
     filterItem : 'All Dishes',
-    OrderId : '',
+    OrderId : ''
 }
 
 const reducersItem = (state = initialState , action) => {
@@ -10,11 +10,11 @@ const reducersItem = (state = initialState , action) => {
                 ...state,
                 filterItem : action.filterItem
             };
-        case 'SET_ORDER_ID' :
-            return{
+        case 'SET_ORDER_ID':
+            return {
                 ...state,
                 OrderId : action.OrderId
-            };
+            }
         default : 
             return state;
     }

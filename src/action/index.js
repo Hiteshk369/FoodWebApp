@@ -6,7 +6,6 @@ export const actionType = () => {
         SET_CARTSHOW : 'SET_CARTSHOW',
         SET_CART_ITEMS : 'SET_CART_ITEMS',
         SET_DESTINATION : 'SET_DESTINATION',
-        SET_ORDER_ID : 'SET_ORDER_ID' ,
-        SET_DIRECTION_RESPONSE : 'SET_DIRECTION_RESPONSE'
+        SET_ORDER_ID : 'SET_ORDER_ID'
     }
 }

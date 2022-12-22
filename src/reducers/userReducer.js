@@ -8,7 +8,8 @@ export const initialState = {
     foodItems : null,
     cartShow : false,
     cartItems : cartInfo ,
-    destination : ''
+    destination : '',
+    orderDetails : null
 }
 
 const reducers = (state = initialState, action) => {

@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
       <AnimatePresence exitBeforeEnter>
-         <React.StrictMode>
+        
           <Provider store = {store}>
           <App />
           </Provider>
-          </React.StrictMode>
+          
       </AnimatePresence>
   </Router>
 
