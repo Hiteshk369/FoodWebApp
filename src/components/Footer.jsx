@@ -4,8 +4,7 @@ import {IoLocationSharp} from 'react-icons/io5'
 import {BsInstagram, BsGithub, BsTwitter} from 'react-icons/bs'
 import {FaLinkedinIn} from 'react-icons/fa'
 import './IconStyles.css'
-
-
+import { Link } from 'react-router-dom'
 
 
 const Footer = () => {
@@ -20,7 +19,7 @@ const Footer = () => {
                         <li><h2 className='hover:text-white hover:font-bold'>About Us</h2></li>
                         <li><h2 className='hover:text-white hover:font-bold'>Team</h2> </li>
                         <li><h2 className='hover:text-white hover:font-bold'>Help & Support</h2></li>
-                        <li><h2 className='hover:text-white hover:font-bold'>Partner with us</h2> </li>
+                        <Link to='/contact'><li><h2 className='hover:text-white hover:font-bold'>Partner with us</h2> </li></Link>
                     </ul>
                 </div>
             </div>

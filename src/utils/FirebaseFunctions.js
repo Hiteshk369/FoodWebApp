@@ -20,3 +20,9 @@ export const saveOrderDetails = async(data) => {
         merge : true,
     });
 };
+
+export const saveContactDetails = async(data) => {
+    await setDoc(doc(firestore, 'contactDetails', `${Date.now()}`),data,{
+        merge:true
+    });
+};

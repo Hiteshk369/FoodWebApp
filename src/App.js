@@ -9,6 +9,7 @@ import Offerspage from './pages/Offerspage';
 import Helppage from './pages/Helppage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import ContactMe from './components/ContactMe';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/help' element = {<Helppage />} />
           <Route path='/checkout' element = {<CheckoutPage />} />
           <Route path='/confirmation' element = {<OrderConfirmationPage />} />
+          <Route path='/contact' element={<ContactMe />} />
         </Routes>
       </main>
     </div>
