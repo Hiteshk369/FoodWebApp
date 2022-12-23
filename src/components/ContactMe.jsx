@@ -39,13 +39,12 @@ const ContactMe = () => {
                 },2000)
             }
         }catch(error){
-
-        }
-        
-        
-        
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+            }, 2000);
+        }   
     };
-
 
   return (
     <div className='h-screen w-screen'>
@@ -74,7 +73,7 @@ const ContactMe = () => {
         }
         {
             error && (
-                <div className='font-poppins p-3 bg-red-500 text-white text-base rounded-md flex justify-center items-center'>Enter all the fields</div>
+                <div className='font-poppins p-3 bg-red-600 text-white text-base rounded-md flex justify-center items-center'>Enter all the fields</div>
                 
             )
         }
